@@ -13,6 +13,17 @@ public class Main {
 //        showCatchWithMultipleExceptions();
 //        showFinallyBlockExceptions();
 //        showTryWithResourcesExceptions();
+        showFinallyBlockExceptions();
+//        try, catch, finally, throws, throw
+//        showCatchWithMultipleExceptions();
+//        try (var bufferedReader = new BufferedReader(new FileReader("test.txt"))) {
+//            bufferedReader.readLine();
+//        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+//            System.out.println(e.getMessage());
+//        } catch (RuntimeException e) {
+//            System.out.println("RuntimeException");
+//        }
+
     }
 
 
@@ -78,18 +89,24 @@ public class Main {
                 System.out.println(line);
                 line = buffer.readLine();
             }
+            throw new RuntimeException("Hello World");
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            System.out.println("Finally block");
             try {
                 if (buffer != null) {
                     buffer.close();
                 }
+                throw new RuntimeException("Hello World111");
             } catch (IOException e) {
+            } catch (RuntimeException e) {
                 e.printStackTrace();
             }
+
         }
-        System.out.println("Buffer is active : " + buffer.read());
+//        System.out.println("Buffer is active : " + buffer.read());
     }
 
     private static void showTryWithResourcesExceptions() {
