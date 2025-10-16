@@ -1,50 +1,64 @@
-package Lesson3;
+package Lesson6;
+
+import lombok.Cleanup;
+
+import java.util.Scanner;
+
+/**
+ * author Shohjahon
+ * version 1.1
+ */
 
 public class App {
-    public static void main(String[] args) {
-        /*Person person = new Person("Shohjahon", 30);
-        person.intro();*/
+    public static void main( String[] args ) {
+        SeatManager manager = new SeatManager();
+        @Cleanup Scanner scanner = new Scanner( System.in );
+        int choice;
 
-        /*Rectangle rectangle = new Rectangle(4, 5);
-        System.out.println("Area: " + rectangle.calcSquare());
-        System.out.println("Perimeter: " + rectangle.calcPerimeter());*/
+        do {
+            System.out.println( "\n=== Airline Booking System ===" );
+            System.out.println( "1. View all seats" );
+            System.out.println( "2. Reserve a seat" );
+            System.out.println( "3. Pay for a seat" );
+            System.out.println( "4. Cancel reservation" );
+            System.out.println( "5. View reservation by seat number" );
+            System.out.println( "6. Exit" );
+            System.out.print( "Enter your choice: " );
 
-        /*Car car = new Car("Japan", "Toyota", 2025);
-        car.print();*/
+            try {
+                choice = Integer.parseInt( scanner.nextLine() );
+            } catch ( NumberFormatException e ) {
+                System.out.println( "Invalid input! Enter a number 1–6." );
+                choice = 0;
+            }
 
-        /*BankAcc bankAcc = new BankAcc("Shohjahon", "123456789", 100);
-        bankAcc.deposit(150);
-        bankAcc.withdraw(50);
-        bankAcc.print();*/
-
-        /*Book book = new Book("123456789", "Awareness", "Osho", 2000, true);
-        book.addNewBook(book);
-        book.getBookInfo();
-        book.reserveBook();
-        book.getBooks();*/
-
-        /*OnlineStore product = new OnlineStore("001", "Phone", 600, 10);
-        product.addProduct(product);
-        product.getProducts();
-        product.buyProduct(1);
-        product.getProducts();*/
-
-        /*BankSystem acc1 = new BankSystem("001", "Shohjahon", 100);
-        BankSystem acc2 = new BankSystem("002", "Ali", 150);
-        BankSystem.addAcc(acc1);
-        BankSystem.addAcc(acc2);
-        BankSystem.showAllAcc();
-        acc1.replenishAcc(100);
-        BankSystem.transferBetweenAcc("002", "001", 50);
-        BankSystem.showAllAcc();
-        BankSystem.deleteAcc("002");
-        BankSystem.showAllAcc();*/
-
-        /*Fighter ali = new Fighter("F1", "Ali", 100, 20);
-        Fighter bob = new Fighter("F2", "Bob", 100, 20);
-        Fighter.addFighter(ali);
-        Fighter.addFighter(bob);
-        Fighter.getFighters();
-        Fighter.fight(ali, bob);*/
+            switch ( choice ) {
+                case 1 -> manager.viewAllSeats();
+                case 2 -> {
+                    System.out.print( "Enter seat number (e.g., S5): " );
+                    String seatNumber = scanner.nextLine().trim().toUpperCase();
+                    System.out.print( "Enter passenger name: " );
+                    String name = scanner.nextLine().trim();
+                    manager.reserveSeat( seatNumber, name );
+                }
+                case 3 -> {
+                    System.out.print( "Enter seat number to pay: " );
+                    String seatNumber = scanner.nextLine().trim().toUpperCase();
+                    manager.payForSeat( seatNumber );
+                }
+                case 4 -> {
+                    System.out.print( "Enter seat number to cancel: " );
+                    String seatNumber = scanner.nextLine().trim().toUpperCase();
+                    manager.cancelReservation( seatNumber );
+                }
+                case 5 -> {
+                    System.out.print( "Enter seat number to view: " );
+                    String seatNumber = scanner.nextLine().trim().toUpperCase();
+                    manager.viewReservation( seatNumber );
+                }
+                case 6 -> System.out.println( "Goodbye!" );
+                default -> System.out.println( "Invalid option. Try again." );
+            }
+        } while ( choice != 6 );
     }
 }
