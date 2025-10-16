@@ -1,50 +1,30 @@
-package Lesson3;
+package Lesson5;
+
+/**
+ * @author Shohjahon
+ * @version 1.0
+ */
 
 public class App {
     public static void main(String[] args) {
-        /*Person person = new Person("Shohjahon", 30);
-        person.intro();*/
+        Teacher teacher = new Teacher("Shohjahon", "01");
 
-        /*Rectangle rectangle = new Rectangle(4, 5);
-        System.out.println("Area: " + rectangle.calcSquare());
-        System.out.println("Perimeter: " + rectangle.calcPerimeter());*/
+        Course course = new Course("1", "Java", teacher);
 
-        /*Car car = new Car("Japan", "Toyota", 2025);
-        car.print();*/
+        Student student1 = new Student("Ali", "001");
+        Student student2 = new Student("Bob", "002");
+        course.addStudent(student1);
+        course.addStudent(student2);
 
-        /*BankAcc bankAcc = new BankAcc("Shohjahon", "123456789", 100);
-        bankAcc.deposit(150);
-        bankAcc.withdraw(50);
-        bankAcc.print();*/
+        course.markAttendance("001", "2025-10-03", true);
+        course.markAttendance("002", "2025-10-03", false);
 
-        /*Book book = new Book("123456789", "Awareness", "Osho", 2000, true);
-        book.addNewBook(book);
-        book.getBookInfo();
-        book.reserveBook();
-        book.getBooks();*/
+        course.assignScore("001", 95.0);
+        course.assignScore("002", 88.5);
 
-        /*OnlineStore product = new OnlineStore("001", "Phone", 600, 10);
-        product.addProduct(product);
-        product.getProducts();
-        product.buyProduct(1);
-        product.getProducts();*/
+        course.displayCourseDetails();
 
-        /*BankSystem acc1 = new BankSystem("001", "Shohjahon", 100);
-        BankSystem acc2 = new BankSystem("002", "Ali", 150);
-        BankSystem.addAcc(acc1);
-        BankSystem.addAcc(acc2);
-        BankSystem.showAllAcc();
-        acc1.replenishAcc(100);
-        BankSystem.transferBetweenAcc("002", "001", 50);
-        BankSystem.showAllAcc();
-        BankSystem.deleteAcc("002");
-        BankSystem.showAllAcc();*/
-
-        /*Fighter ali = new Fighter("F1", "Ali", 100, 20);
-        Fighter bob = new Fighter("F2", "Bob", 100, 20);
-        Fighter.addFighter(ali);
-        Fighter.addFighter(bob);
-        Fighter.getFighters();
-        Fighter.fight(ali, bob);*/
+        student1.displayAttend();
+        student2.displayAttend();
     }
 }

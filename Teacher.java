@@ -1,4 +1,4 @@
-package Lesson2;
+package Lesson5;
 
 public class Teacher extends Person {
     public Teacher(String name, String id) {
@@ -6,7 +6,7 @@ public class Teacher extends Person {
     }
 
     @Override
-    public void printInfo() {
-        System.out.printf("Instructor: %s (id %s).%n", getName(), getId());
+    public void displayInfo() {
+        System.out.println("Instructor: " + getName() + " (ID: " + getId() + ")");
     }
 }
