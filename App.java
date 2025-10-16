@@ -1,50 +1,50 @@
-package Lesson2;
-
-import lombok.Cleanup;
-
-import java.util.Scanner;
-
-/**
- * @author Shohjahon
- * @version 1.0
- */
+package Lesson3;
 
 public class App {
     public static void main(String[] args) {
-        @Cleanup Scanner scanner = new Scanner(System.in);
-        QuizManager manager = new QuizManager();
+        /*Person person = new Person("Shohjahon", 30);
+        person.intro();*/
 
-        boolean running = true;
-        while (running) {
-            System.out.println("1) Create quiz");
-            System.out.println("2) Add question to quiz");
-            System.out.println("3) List quizzes");
-            System.out.println("4) Launch quiz (student takes quiz)");
-            System.out.println("0) Exit");
-            System.out.print("Choose: ");
-            String choice = scanner.nextLine().trim();
+        /*Rectangle rectangle = new Rectangle(4, 5);
+        System.out.println("Area: " + rectangle.calcSquare());
+        System.out.println("Perimeter: " + rectangle.calcPerimeter());*/
 
-            switch (choice) {
-                case "1":
-                    new CreateQuizCommand(manager, scanner).execute();
-                    break;
-                case "2":
-                    new AddQuestionCommand(manager, scanner).execute();
-                    break;
-                case "3":
-                    manager.listQuizzes();
-                    break;
-                case "4":
-                    new LaunchQuizCommand(manager, scanner).execute();
-                    break;
-                case "0":
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Unknown option.");
-            }
-        }
+        /*Car car = new Car("Japan", "Toyota", 2025);
+        car.print();*/
 
-        System.out.println("Goodbye.");
+        /*BankAcc bankAcc = new BankAcc("Shohjahon", "123456789", 100);
+        bankAcc.deposit(150);
+        bankAcc.withdraw(50);
+        bankAcc.print();*/
+
+        /*Book book = new Book("123456789", "Awareness", "Osho", 2000, true);
+        book.addNewBook(book);
+        book.getBookInfo();
+        book.reserveBook();
+        book.getBooks();*/
+
+        /*OnlineStore product = new OnlineStore("001", "Phone", 600, 10);
+        product.addProduct(product);
+        product.getProducts();
+        product.buyProduct(1);
+        product.getProducts();*/
+
+        /*BankSystem acc1 = new BankSystem("001", "Shohjahon", 100);
+        BankSystem acc2 = new BankSystem("002", "Ali", 150);
+        BankSystem.addAcc(acc1);
+        BankSystem.addAcc(acc2);
+        BankSystem.showAllAcc();
+        acc1.replenishAcc(100);
+        BankSystem.transferBetweenAcc("002", "001", 50);
+        BankSystem.showAllAcc();
+        BankSystem.deleteAcc("002");
+        BankSystem.showAllAcc();*/
+
+        /*Fighter ali = new Fighter("F1", "Ali", 100, 20);
+        Fighter bob = new Fighter("F2", "Bob", 100, 20);
+        Fighter.addFighter(ali);
+        Fighter.addFighter(bob);
+        Fighter.getFighters();
+        Fighter.fight(ali, bob);*/
     }
 }
