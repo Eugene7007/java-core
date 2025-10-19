@@ -23,8 +23,10 @@
 ---
 # Исходные материалы
 ### Java: 
-- Herbert Schildt — Java: The Complete Reference
-- Joshua Bloch — Effective Java
+- Herbert Schildt - Java: The Complete Reference
+- Joshua Bloch - Effective Java
+- Brian Goetz - Java Concurrency in Practice
+- Ken Kousen - Modern Java Recipes
 
 ### Git:
 - https://git-scm.com/book/en/v2
