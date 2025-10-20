@@ -24,8 +24,6 @@ public class Main {
         System.out.println(dateTime);
         System.out.println(zoned);
         System.out.println(instant);
-
-
     }
 
     private static void parse() {
