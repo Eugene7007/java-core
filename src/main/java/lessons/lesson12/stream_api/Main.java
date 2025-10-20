@@ -8,7 +8,14 @@ import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.naturalOrder;
+import static java.util.Comparator.reverseOrder;
 
 public class Main {
 
@@ -19,7 +26,7 @@ public class Main {
     );
 
     private static List<Student> physics = Arrays.asList(
-        new Student("Alan", 19),
+        new Student("Alan", 57),
         new Student("Anne", 21),
         new Student("Davis", 21)
     );
@@ -33,21 +40,27 @@ public class Main {
         strings.add("a");
         strings.add("b");
         strings.add("c");
-//        for (String s : strings) {
-//            if (s.equals("a"))
-//                strings.remove(s);
-//        }
+        for (String s : strings) {
+            if (s.equals("a"))
+                strings.remove(s);
+        }
 
         strings.removeIf(s -> s.equals("a"));
 
         createStream();
         reductionOperations();
+
+
+        var names = Arrays.asList("John", "Tom", "Emily", "Ann");
+        var sortedNames = lengthSortThenAlphaSort(names);
+        System.out.println(sortedNames);
     }
 
     private static void createStream() {
         List<Student> students = courses.stream()
             .flatMap(s -> s.getStudents().stream())
             .toList();
+        Predicate<Student> func = (a) -> a.getAge() > 50;
 
         List<Integer> topTwoAges = students.stream()
             .map(Student::getAge)
@@ -56,9 +69,15 @@ public class Main {
             .sorted((a1, a2) -> a2 - a1)
             .skip(1)
             .limit(2)
-            .collect(Collectors.toList());
+            .toList();
 
-        System.out.println(topTwoAges);
+        var olders = students.stream()
+                .filter(func)
+                .toList();
+
+        System.out.println(olders);
+
+//        System.out.println(topTwoAges);
 
         //peak
         System.out.println("------start peek------");
@@ -146,5 +165,15 @@ public class Main {
         OptionalInt max = Arrays.stream(strings).mapToInt(String::length).max();
         OptionalInt min = Arrays.stream(strings).mapToInt(String::length).min();
         System.out.println("Максимальная и минимальная длины равны " + max + " и " + min);
+    }
+
+    public static List<String> lengthSortThenAlphaSort(List<String> names) {
+        return names.stream()
+                .sorted(
+                        comparing(String::length)
+                                .thenComparing(naturalOrder())
+                                .thenComparing(reverseOrder())
+                )
+                .toList();
     }
 }

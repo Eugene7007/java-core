@@ -2,13 +2,10 @@ package lessons.lesson12.functional_interfaces;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
@@ -22,16 +19,16 @@ public class Main {
         Consumer<String> c2 = (name) -> System.out.printf(", your name contains %d letters", name.length());
         Consumer<String> pipe = c1.andThen(c2);
 
-        c1.accept("Mary");
-        System.out.println("\n");
+//        c1.accept("Mary");
+//        System.out.println("\n");
         pipe.accept("John");
         System.out.println("\n");
 
         Predicate<String> oddCountLetters = (name) -> name.length() % 2 != 0;
         Predicate<String> startWithA = (name) -> name.startsWith("A");
-        Predicate<String> filters = oddCountLetters.and(startWithA);
+        Predicate<String> filters = oddCountLetters.or(startWithA);
 
-        var result = Stream.of("Sevare", "Tom", "Ann").filter(filters).toList();
+        var result = Stream.of("Sevara", "Tom", "Ann").filter(filters).toList();
         System.out.println(result);
 
         UnaryOperator<String> ex = String::toUpperCase;
@@ -49,20 +46,7 @@ public class Main {
         System.out.println(DataSource.UUID_GEN.get());
         System.out.println(DataSource.CONSTANT.get());
 
-        var names = Arrays.asList("John", "Tom", "Emily", "Ann");
-        var sortedNames = lengthSortThenAlphaSort(names);
-        System.out.println(sortedNames);
-
-
     }
 
-    public static List<String> lengthSortThenAlphaSort(List<String> names) {
-        return names.stream()
-            .sorted(
-                comparing(String::length)
-                    .thenComparing(naturalOrder())
-                    .thenComparing(reverseOrder())
-            )
-            .toList();
-    }
+
 }
